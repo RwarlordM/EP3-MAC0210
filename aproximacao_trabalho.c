@@ -91,15 +91,15 @@ long double trapezio_composto_lagrange(long double h){
 long double simpson_composto_newton(long double h){
     long double integral = interpolacao_newton(0) + interpolacao_newton(30);
     long double i = 0.05;
-    bool impar = false;
+    bool par = false;
     while(i < 30){
-        if(impar){
+        if(par){
             integral += 2*interpolacao_newton(i);
-            impar = false;
+            par = false;
         }
         else{
             integral += 4*interpolacao_newton(i);
-            impar = true;
+            par = true;
         }
         i += h;
     }
@@ -109,9 +109,9 @@ long double simpson_composto_newton(long double h){
 long double simpson_composto_lagrange(long double h){
     long double integral = valores_gx[0] + valores_gx[7];
     long double i = 0.05;
-    bool impar = false;
+    bool par = false;
     while(i < 30){
-        if(impar){
+        if(par){
             /*if(5 - h < i < 5 + h || 10 - h < i < 10 + h || 15 - h < i < 15 + h || 20 - h < i < 20 + h || 25 - h < i < 25 + h) {
                 //printf("valoriii %Lf",i);
                 integral += 2*valores_gx[(int) i/5];
@@ -120,7 +120,7 @@ long double simpson_composto_lagrange(long double h){
                 integral += 2*interpolacao_lagrange(i);
             }*/
             integral += 2*interpolacao_lagrange(i);
-            impar = false;
+            par = false;
         }
         else{
             /*if(5 - h < i < 5 + h || 10 - h < i < 10 + h || 15 - h < i < 15 + h || 20 - h < i < 20 + h || 25 - h < i < 25 + h) {
@@ -131,7 +131,7 @@ long double simpson_composto_lagrange(long double h){
                 integral += 4*interpolacao_lagrange(i);
             }*/
             integral += 4*interpolacao_lagrange(i);
-            impar = true;
+            par = true;
         }
         i += h;
     }

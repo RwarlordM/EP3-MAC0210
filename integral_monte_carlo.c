@@ -50,9 +50,9 @@ long double aproximacao_integral_monte_carlo_uni_h(double a, double b, int n){
     long double integral = 0.0;
     srand(time(NULL));
     for(int i = 0; i < n; i++){
-        long double valor = rand() % 1000000;
-        //valor = valor/100000;
+        long double valor = rand() % 5000;
         integral += h(valor);
+        printf("%Lf\n", valor);
     }
     return (b-a) * integral / n;
 }
@@ -73,17 +73,22 @@ long double aproximacao_integral_monte_carlo_multi(int n){
 int main(){
 
     // Testes Monte Carlo Unidimensional:
+    
     // 1) sin(x)
     printf("Aproximação da integral do seno de 0 a 1: %Lf\n", 
            aproximacao_integral_monte_carlo_uni_f(0.0, 1.0, 100000));
+    
     // 2) x ^ 3
     printf("Aproximação da integral de x^3 de 3 a 7: %Lf\n", 
            aproximacao_integral_monte_carlo_uni_g(3.0, 7.0, 1000000));
+    
     // 3) e^(-x)
     printf("Aproximação da integral de e^(-x) de 0 a +inf: %Lf\n", 
-           aproximacao_integral_monte_carlo_uni_h(0.0, 1000000.0, 10000000));
+           aproximacao_integral_monte_carlo_uni_h(0.0, 5000.0, 1000));
 
     // Teste Monte Carlo Multidimensional:
+
+    // 4) PI
     printf("Aproximação do valor de PI: %Lf\n", 
            4 * aproximacao_integral_monte_carlo_multi(500000));
 

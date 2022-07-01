@@ -50,11 +50,10 @@ long double aproximacao_integral_monte_carlo_uni_h(double a, double b, int n){
     long double integral = 0.0;
     srand(time(NULL));
     for(int i = 0; i < n; i++){
-        long double valor = rand() % 5000;
-        integral += h(valor);
-        printf("%Lf\n", valor);
+        long double valor = rand() % 32000;
+        integral += h(valor)/n;
     }
-    return (b-a) * integral / n;
+    return (b-a) * integral;
 }
 
 long double aproximacao_integral_monte_carlo_multi(int n){
@@ -84,7 +83,7 @@ int main(){
     
     // 3) e^(-x)
     printf("Aproximação da integral de e^(-x) de 0 a +inf: %Lf\n", 
-           aproximacao_integral_monte_carlo_uni_h(0.0, 5000.0, 1000));
+           aproximacao_integral_monte_carlo_uni_h(0.0, 32000.0, 10000000));
 
     // Teste Monte Carlo Multidimensional:
 

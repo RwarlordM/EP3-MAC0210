@@ -25,6 +25,9 @@ void calcula_pesos_lagrange(){
 }
 
 long double interpolacao_lagrange(long double x){
+    for(int i = 0; i < tamanho; i++){
+        if(x == valores_x[i]) return valores_gx[i];
+    }
     long double dividendo = 0.0, divisor = 0.0;
     for(int i = 0; i < tamanho; i++){
         dividendo += pesos_y_lagrange[i]/(x - valores_x[i]);
